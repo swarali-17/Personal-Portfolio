@@ -1,5 +1,5 @@
 import React from "react";
-import { Code2, Activity, Cpu, Layers, Network, Binary } from "lucide-react";
+import { Network, Layers } from "lucide-react";
 
 const ExperienceCard = ({
   title,
@@ -16,24 +16,27 @@ const ExperienceCard = ({
     <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 animate-gradient-xy transition-all duration-500" />
 
     <div className="relative bg-gray-900/90 rounded-lg p-8 h-full border border-gray-800/50 shadow-xl backdrop-blur-xl">
-      {/* Floating icon with pulse effect */}
+      {/* Floating icon */}
       <div className="relative mb-6">
         <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-25 rounded-full blur-xl group-hover:opacity-75 animate-pulse transition-all duration-500" />
         <Icon className="w-12 h-12 text-cyan-400 relative z-10 transform group-hover:rotate-12 transition-transform duration-300" />
       </div>
 
-      {/* Content with improved typography */}
+      {/* Content */}
       <div className="space-y-3">
         <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
           {title}
         </h3>
+
         <div className="flex justify-between items-center text-gray-300">
           <span className="font-semibold text-blue-400">{company}</span>
           <span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full">
             {period}
           </span>
         </div>
-        <p className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed">
+
+        {/* Description with line breaks */}
+        <p className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed whitespace-pre-line">
           {description}
         </p>
       </div>
@@ -55,40 +58,38 @@ const ExperienceSection = () => {
   const experiences = [
     {
       icon: Network,
-      title: "WordPress Developer",
-      company: "Fiverr",
-      period: "2019 - 2020",
-      description:
-        "Worked on developing and customizing WordPress websites for clients globally.",
+      title: "Software Engineering Intern",
+      company: "Google",
+      period: "Jun 2025 - Aug 2025",
+      description: `• Architected and deployed unified Ad Strength backend service consolidating two legacy systems for Search & PMax campaigns, reducing maintenance overhead by 60%.
+
+• Enhanced ad quality scoring logic enabling new feature expansions, improving recommendation accuracy by 15% and increasing advertiser CTR by 8%.
+
+• Developed structured logging, and unit + integration tests, reducing debugging time by 25% and improving long-term maintainability with clean technical documentation.`,
     },
     {
       icon: Layers,
-      title: "Junior Frontend Developer",
-      company: "Sera Programmer",
-      period: "2021 - 2023",
-      description:
-        "Assisted in building and optimizing user interfaces with a focus on responsive and interactive designs.",
-    },
-    {
-      icon: Code2,
-      title: "JavaScript Developer",
-      company: "OlovJS (Sera Programmer)",
-      period: "2023 - Present",
-      description:
-        "Contributed to developing JavaScript libraries and enhancing framework functionalities.",
+      title: "Machine Learning Intern",
+      company: "Zephdroids",
+      period: "Oct 2025 - Dec 2025",
+      description: `• Engineered a Python + OpenCV + OCR pipeline for extracting SKU codes from drone-captured warehouse images, automating 90% of manual scanning with 94% detection accuracy.
+
+• Built adaptive image preprocessing (denoising, contrast normalization, perspective correction) improving OCR recall by 28% on low-quality images.
+
+• Parallelized pipeline execution using multiprocessing, reducing inference runtime by 40% enabling near real-time warehouse processing.`,
     },
   ];
 
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b relative overflow-hidden pt-32 pb-20">
-        {/* Animated gradient background */}
+
+        {/* Background */}
         <div className="absolute inset-0 bg-[#04081A]" />
 
-        {/* Grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(50,50,70,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(50,50,70,0.15)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)]" />
 
-        {/* Animated particles */}
+        {/* Floating particles */}
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <div
@@ -103,9 +104,9 @@ const ExperienceSection = () => {
           ))}
         </div>
 
-        {/* Content container */}
+        {/* Content */}
         <div className="relative container mx-auto px-6 mt-10">
-          {/* Section header with enhanced effects */}
+          {/* Header */}
           <div className="flex flex-col items-center space-y-8 mb-20">
             <div className="relative">
               <h2 className="text-5xl md:text-7xl font-black text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-center">
@@ -113,20 +114,21 @@ const ExperienceSection = () => {
               </h2>
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl rounded-full" />
             </div>
+
             <p className="text-lg md:text-xl text-gray-400 font-medium tracking-wide text-center max-w-2xl">
-              "Transforming ideas into digital reality, one project at a time"
+              "Transforming what I learn into solutions that actually work"
             </p>
           </div>
 
-          {/* Experience grid with improved layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          {/* GRID — now EXACTLY 2 CARDS FIT NICELY */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
             {experiences.map((exp, index) => (
               <ExperienceCard key={index} {...exp} />
             ))}
           </div>
         </div>
 
-        {/* Enhanced background effects */}
+        {/* Background glows */}
         <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse delay-1000" />
       </div>

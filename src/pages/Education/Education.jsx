@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import EducationLoader from "@/components/ui/EducationLoader";
-import {
-  Star,
-  Award,
-  Calendar,
-  BookOpen,
-  GraduationCap,
-  Trophy,
-} from "lucide-react";
+import { Award, Calendar, BookOpen, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EducationSection = () => {
@@ -15,24 +7,26 @@ const EducationSection = () => {
 
   const educationData = [
     {
-      degree: "Secondary School Certificate (SSC)",
-      school: "Natore Textile Institute",
-      mascot: "📘",
-      year: "2019-2021",
-      achievements: ["GPA: 4.89", "Subject: Science"],
-      skills: ["Mathematics", "Physics", "Chemistry", "Biology"],
-      description:
-        "Focused on core science subjects with emphasis on practical laboratory work and scientific research methodologies.",
+      degree: "B.Tech in Information Technology",
+      school: "Cummins College of Engineering for Women",
+      mascot: "🎓",
+      year: "2022-2026",
+      achievements: ["CGPA: 9.1", "Top 5% of department"],
+      skills: ["Java", "Data Structures", "Algorithms", "DBMS", "AI", "ML"],
     },
     {
       degree: "Higher Secondary Certificate (HSC)",
-      school: "Dottopara Model Degree College",
+      school: "Dr. Kalmadi Shamrao Junior College",
       mascot: "📗",
-      year: "2021-2023",
-      achievements: ["GPA: 4.25", "Subject: Arts"],
-      skills: ["Literature", "Social Studies", "Economics", "History"],
-      description:
-        "Developed strong analytical and critical thinking skills through comprehensive study of humanities and social sciences.",
+      year: "2020-2022",
+      achievements: ["Percentage: 80.50", "MHT-CET: 97.30 Percentile"],
+    },
+    {
+      degree: "Secondary School Certificate (SSC)",
+      school: "New India School",
+      mascot: "📘",
+      year: "2019-2020",
+      achievements: ["Percentage: 96.60", "Top 10 in the school"],
     },
   ];
 
@@ -40,22 +34,13 @@ const EducationSection = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.2 },
     },
   };
 
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
@@ -77,27 +62,20 @@ const EducationSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-6">
             Educational Journey
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Discover how academic excellence shapes innovative thinking and
-            professional growth.
-          </p>
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {educationData.map((edu, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              className={`relative border rounded-xl p-8 transition-all duration-300 bg-gray-900/50 backdrop-blur-sm ${
-                hoveredIndex === index
-                  ? "border-teal-500 scale-[1.02]"
-                  : "border-blue-400/20"
-              }`}
+              className={`relative border rounded-xl p-8 transition-all duration-300 bg-gray-900/50 backdrop-blur-sm ${hoveredIndex === index ? "border-teal-500 scale-[1.02]" : "border-blue-400/20"
+                }`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
@@ -105,9 +83,7 @@ const EducationSection = () => {
                 <div className="space-y-2">
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{edu.mascot}</span>
-                    <h3 className="text-2xl font-bold text-white">
-                      {edu.degree}
-                    </h3>
+                    <h3 className="text-2xl font-bold text-white">{edu.degree}</h3>
                   </div>
                   <p className="text-lg text-gray-300 flex items-center gap-2">
                     <BookOpen className="w-5 h-5 text-teal-500" />
@@ -119,9 +95,12 @@ const EducationSection = () => {
                   </p>
                 </div>
 
-                <p className="text-gray-300 text-sm italic border-l-2 border-teal-500 pl-3">
-                  {edu.description}
-                </p>
+                {/* Conditionally render description */}
+                {edu.description && (
+                  <p className="text-gray-300 text-sm italic border-l-2 border-teal-500 pl-3">
+                    {edu.description}
+                  </p>
+                )}
 
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-white flex items-center gap-2">
@@ -141,16 +120,19 @@ const EducationSection = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {edu.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 text-xs rounded bg-blue-500/10 text-blue-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                {/* Conditionally render skills */}
+                {edu.skills && (
+                  <div className="flex flex-wrap gap-2">
+                    {edu.skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 text-xs rounded bg-blue-500/10 text-blue-300"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
@@ -161,3 +143,4 @@ const EducationSection = () => {
 };
 
 export default EducationSection;
+
